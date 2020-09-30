@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+
+    public function __construct ()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +33,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $user = Auth::user()->id;
+        return view('posts.create')->with('user', $user);
     }
 
     /**
@@ -47,7 +53,10 @@ class PostController extends Controller
             'url' => ['required', 'url'],
         ]);
 
-        Posts::create($request->all());
+//        dd($request->all());
+
+        $posts =  Posts::create($request->all());
+        $this->storeImage($posts);
 
         return redirect()->route('posts.index')
             ->with('success','Posts created successfully.');
@@ -122,5 +131,15 @@ class PostController extends Controller
         $id->delete($id);
         return redirect()->route('posts.index')
             ->with('success','Post deleted successfully');
+    }
+
+    private function storeImage($posts)
+    {
+        if(request()->has('image')){
+            $posts->update([
+                'image' => request()->image->store('uploads', 'public')
+            ]);
+
+        }
     }
 }

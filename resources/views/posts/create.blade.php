@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Add New Product</h2>
+                <h2>Add New Posts</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
@@ -31,6 +31,7 @@
             <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css">
         </head>
 
+        <input type="hidden" name="user_id" value="{{ $user }}">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
@@ -45,21 +46,28 @@
                 </div>
             </div>
             <div class="container">
-// my image bs
-                <div class="panel panel-primary">
-                    <div class="panel-body">
-                        <strong>Upload</strong>
-                        <form action="{{ route('posts.create') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="file" name="image" class="form-control">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+
+{{--                <div class="panel panel-primary">--}}
+{{--                    <div class="panel-body">--}}
+{{--                        <strong>Upload</strong>--}}
+{{--                        <form action="{{ route('posts.create') }}" method="POST" enctype="multipart/form-data">--}}
+{{--                            @csrf--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <input type="file" name="image" class="form-control">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group d-flex flex-column">
+                    <label for="image"><strong>Upload</strong></label>
+                    <input type="file" name="image">
                 </div>
-            </div>
+                </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

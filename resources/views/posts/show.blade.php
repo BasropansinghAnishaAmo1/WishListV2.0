@@ -24,12 +24,21 @@
                 {{ $posts->body }}
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Image:</strong>
-                {{ $posts->image }}
+
+{{--        <div class="col-xs-12 col-sm-12 col-md-12">--}}
+{{--            <div class="form-group">--}}
+{{--                <strong>Image:</strong>--}}
+{{--                {{ $posts->image }}--}}
+{{--            </div>--}}
+{{--        </div>--}}
+        @if($posts->image)
+        <div class="row">
+            <div class="col-12">
+                <img src="{{asset('storage' . $posts->image)}}" alt="" class="img-thumbnail">
             </div>
         </div>
+        @endif
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Price:</strong>
